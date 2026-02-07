@@ -10,9 +10,6 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install --legacy-peer-deps
 
-# Copy source code
-COPY src ./src
-COPY knowledge ./knowledge
 
 # Copy model folder locally (your .gguf file)
 RUN mkdir -p src/ai/model
