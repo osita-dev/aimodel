@@ -1,0 +1,2 @@
+# Ignore TinyLlama model
+src/ai/model/tinyllama-*.gguf

@@ -1,0 +1,4 @@
+Calculus studies how things change and allows calculation of slopes and areas.
+Derivative measures the rate of change of a function.
+Integral measures the accumulation of quantities.
+Example: d/dx (x^2) = 2x

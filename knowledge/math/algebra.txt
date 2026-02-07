@@ -1,0 +1,3 @@
+Algebra is the branch of mathematics dealing with symbols and the rules for manipulating those symbols.
+An equation is a statement that two expressions are equal.
+Example: 2x + 3 = 7, solve for x.
