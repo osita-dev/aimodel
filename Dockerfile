@@ -12,8 +12,8 @@ RUN npm install --legacy-peer-deps
 
 
 # Copy model folder locally (your .gguf file)
-RUN mkdir -p src/ai/model
-RUN wget -O src/ai/model/tinyllama.gguf https://huggingface.co/.../tinyllama.gguf
+RUN mkdir -p C:\Users\Osita Dimma\OneDrive\Desktop\purpleschol\model
+RUN wget -O C:\Users\Osita Dimma\OneDrive\Desktop\purpleschol\model
 
 # Expose port
 EXPOSE 5000
