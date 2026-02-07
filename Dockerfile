@@ -15,7 +15,8 @@ COPY src ./src
 COPY knowledge ./knowledge
 
 # Copy model folder locally (your .gguf file)
-COPY src/ai/model/tinyllama-1.1b-chat-v1.0.Q2_K.gguf ./src/ai/model/tinyllama-1.1b-chat-v1.0.Q2_K.gguf
+RUN mkdir -p src/ai/model
+RUN wget -O src/ai/model/tinyllama.gguf https://huggingface.co/.../tinyllama.gguf
 
 # Expose port
 EXPOSE 5000
