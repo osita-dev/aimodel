@@ -1,10 +1,10 @@
 # --- Stage 1: Download TinyLlama model ---
-FROM python:3.12-alpine AS downloader
+FROM python:3.12-slim AS downloader
 
 WORKDIR /tmp
 
-# Install gdown
-RUN pip install gdown
+# Install gdown and wget
+RUN pip install --no-cache-dir gdown
 
 # Create folder for model
 RUN mkdir -p /tmp/model
@@ -13,9 +13,14 @@ RUN mkdir -p /tmp/model
 RUN gdown https://drive.google.com/uc?id=1aI7HommJ-YRUvCaOjd4HC8MIPEv5v9Uw -O /tmp/model/tinyllama.gguf
 
 # --- Stage 2: NodeJS app ---
-FROM node:20-alpine
+FROM node:20-bullseye
 
 WORKDIR /app
+
+# Install build tools and git for node-llama-cpp
+RUN apt-get update && \
+    apt-get install -y git build-essential python3 python3-pip && \
+    rm -rf /var/lib/apt/lists/*
 
 # Copy package.json and install dependencies
 COPY package.json package-lock.json* ./
