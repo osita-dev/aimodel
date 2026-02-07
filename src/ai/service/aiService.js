@@ -1,4 +1,4 @@
-import Llama from "node-llama-cpp";
+import * as Llama from "node-llama-cpp";
 import { buildPrompt } from "./promptBuilder.js";
 import path from "path";
 
