@@ -3,7 +3,7 @@ FROM python:3.12-slim AS downloader
 
 WORKDIR /tmp
 
-# Install gdown and wget
+# Install gdown (for downloading from Google Drive)
 RUN pip install --no-cache-dir gdown
 
 # Create folder for model
@@ -17,9 +17,9 @@ FROM node:20-bullseye
 
 WORKDIR /app
 
-# Install build tools and git for node-llama-cpp
+# Install build tools, git, Python (needed for node-llama-cpp)
 RUN apt-get update && \
-    apt-get install -y git build-essential python3 python3-pip && \
+    apt-get install -y git build-essential python3 python3-pip cmake && \
     rm -rf /var/lib/apt/lists/*
 
 # Copy package.json and install dependencies
@@ -32,7 +32,7 @@ COPY src ./src
 # Copy model from Python stage
 COPY --from=downloader /tmp/model /app/src/ai/model
 
-# Expose your port
+# Expose your app port
 EXPOSE 5000
 
 # Start the server
