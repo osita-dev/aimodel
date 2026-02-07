@@ -3,9 +3,13 @@ import fs from "fs";
 import path from "path";
 
 const client = new ChromaClient();
-const collection = client.collection("knowledge");
 
 export const ingestKnowledge = async () => {
+  // Create or get collection
+  const collection = await client.getOrCreateCollection({
+    name: "knowledge"
+  });
+
   const basePath = path.resolve("knowledge");
   const subjects = fs.readdirSync(basePath);
 
@@ -20,5 +24,6 @@ export const ingestKnowledge = async () => {
       });
     }
   }
+
   console.log("Knowledge ingested into Chroma.");
 };
