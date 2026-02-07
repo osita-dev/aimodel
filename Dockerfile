@@ -10,10 +10,16 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install --legacy-peer-deps
 
+# Create model folder
+RUN mkdir -p src/ai/model
+
+# Install gdown (Python) to download from Google Drive
+RUN apk add --no-cache python3 py3-pip && \
+    pip3 install gdown
 
 # Copy model folder locally (your .gguf file)
-RUN  C:\Users\Osita Dimma\OneDrive\Desktop\purpleschol\model
-RUN C:\Users\Osita Dimma\OneDrive\Desktop\purpleschol\model
+# Download TinyLlama model from Google Drive
+RUN gdown https://drive.google.com/uc?id=1aI7HommJ-YRUvCaOjd4HC8MIPEv5v9Uw -O src/ai/model/tinyllama.gguf
 
 # Expose port
 EXPOSE 5000
