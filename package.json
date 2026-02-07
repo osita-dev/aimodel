@@ -13,7 +13,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.6.0",
     "node-llama-cpp": "^0.7.0",
-    "chromadb-client": "^1.5.10",
+    "@chromadb/chromadb": "^1.5.0",
     "body-parser": "^1.20.2"
   },
   "devDependencies": {
