@@ -1,19 +1,17 @@
-import { ChromaClient } from "chromadb"; // make sure this matches your installed package
+import { ChromaClient } from "chromadb";
 
-// Initialize client
 const client = new ChromaClient();
 
-// Get or create collection
-const collection = await client.getOrCreateCollection({
-  name: "knowledge"
-});
+export const runRAGQuery = async (question, subject = null) => {
+  const collection = await client.getOrCreateCollection({ name: "knowledge" });
 
-// Example query function
-export const queryKnowledge = async (queryText) => {
   const results = await collection.query({
-    queryTexts: [queryText],
-    nResults: 3
+    queryTexts: [question],
+    nResults: 3,
+    ...(subject && { where: { subject } })
   });
 
-  return results;
+  // Combine retrieved docs into a single context string
+  const context = results.results[0].documents.join("\n");
+  return context;
 };
