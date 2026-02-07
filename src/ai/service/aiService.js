@@ -1,11 +1,12 @@
-import * as Llama from "node-llama-cpp";
+import * as LlamaCpp from "node-llama-cpp";
 import { buildPrompt } from "./promptBuilder.js";
 import path from "path";
 
 // Path to tinyllama
 const MODEL_PATH = path.resolve("src/ai/model/tinyllama.gguf");
 
-const llama = new Llama({
+// Use the Llama class from the namespace
+const llama = new LlamaCpp.Llama({
   model: MODEL_PATH,
   n_ctx: 512,
   n_threads: 4
